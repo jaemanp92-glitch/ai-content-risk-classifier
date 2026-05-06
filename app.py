@@ -8,14 +8,18 @@ def policy_decision(text):
         "hurt you",
         "attack you",
         "beat you",
-        "i will kill"
+        "i will kill",
+        "죽어",
+        "죽인다"
     ]
 
     hate_keywords = [
         "go back to your country",
         "immigrant scum",
         "your race",
-        "foreigners are"
+        "foreigners are",
+        "외국인들은",
+        "꺼져"
     ]
 
     insult_keywords = [
@@ -23,26 +27,54 @@ def policy_decision(text):
         "idiot",
         "dumb",
         "trash",
-        "disgusting"
+        "disgusting",
+        "멍청이",
+        "바보"
     ]
 
     if any(word in text_lower for word in threat_keywords):
-        return "YES", "Threat", "Remove", "Direct threat or violent language detected."
+        return (
+            "YES",
+            "Threat",
+            "HIGH",
+            "Remove",
+            "Direct threat or violent language detected."
+        )
 
     elif any(word in text_lower for word in hate_keywords):
-        return "YES", "Hate Speech", "Remove", "Attack based on nationality, ethnicity, or identity detected."
+        return (
+            "YES",
+            "Hate Speech",
+            "HIGH",
+            "Remove",
+            "Attack based on nationality, ethnicity, or identity detected."
+        )
 
     elif any(word in text_lower for word in insult_keywords):
-        return "YES", "Harassment / Insult", "Review", "Abusive or insulting language detected."
+        return (
+            "YES",
+            "Harassment / Insult",
+            "MEDIUM",
+            "Review",
+            "Abusive or insulting language detected."
+        )
 
     else:
-        return "NO", "Safe", "Allow", "No clear policy violation detected."
+        return (
+            "NO",
+            "Safe",
+            "LOW",
+            "Allow",
+            "No clear policy violation detected."
+        )
 
+# ---------------- UI ----------------
 
 st.title("AI Content Moderation Tool")
 
 st.write(
-    "A simple Trust & Safety prototype for reviewing user-generated comments."
+    "A simple AI-powered Trust & Safety moderation tool "
+    "for reviewing user-generated comments."
 )
 
 user_input = st.text_area("Enter comment")
@@ -53,15 +85,18 @@ if st.button("Check"):
         st.warning("Please enter a comment.")
 
     else:
-        violation, policy, action, reason = policy_decision(user_input)
+        violation, policy, severity, action, reason = policy_decision(user_input)
 
         if violation == "YES":
             st.error(f"Violation: {violation}")
             st.warning(f"Policy: {policy}")
+            st.write(f"Severity: {severity}")
             st.write(f"Action: {action}")
             st.write(f"Reason: {reason}")
 
         else:
             st.success("Content is safe.")
             st.write(f"Policy: {policy}")
+            st.write(f"Severity: {severity}")
             st.write(f"Action: {action}")
+            st.write(f"Reason: {reason}")
