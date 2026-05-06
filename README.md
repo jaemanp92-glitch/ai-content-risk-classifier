@@ -1,48 +1,46 @@
 # AI Content Risk Classifier
 
-## 📌 Overview
-This project is a machine learning model that classifies toxic comments using NLP techniques.
+A simple AI-powered Trust & Safety moderation tool built with Python and Streamlit.
 
-## 🧠 What I did
-- Preprocessed text data from Kaggle dataset
-- Converted text into numerical vectors using TF-IDF
-- Trained Logistic Regression model
-- Handled class imbalance using class_weight
-- Evaluated model using accuracy, F1-score, confusion matrix
+## Overview
 
-## 📊 Result
-- Accuracy: ~93%
-- Improved recall for toxic class using balanced model
+This project classifies user-generated comments into different moderation categories such as:
 
-## 🛠 Tech Stack
+- Hate Speech
+- Threats
+- Harassment / Insults
+- Safe Content
+
+The system provides moderation decisions and recommended actions based on predefined policy rules.
+
+## Features
+
+- Real-time text moderation
+- Rule-based content classification
+- Simple and clean UI with Streamlit
+- Policy-based moderation output
+- Public web deployment using Streamlit Cloud
+
+## Tech Stack
+
 - Python
-- Pandas
-- Scikit-learn
-- NLP (TF-IDF)
+- Streamlit
+- GitHub
+- NLP-based keyword classification
 
-## 📁 Dataset
-Kaggle - Toxic Comment Classification Challenge
+## Example Categories
 
-## 🚀 Future Improvements
-- Try deep learning (LSTM, BERT)
-- Improve precision for toxic class
-- Deploy as web service
+| Input Example | Result |
+|---|---|
+| "I will kill you" | Threat |
+| "Go back to your country" | Hate Speech |
+| "You are stupid" | Harassment |
+| "Have a nice day" | Safe |
 
-## 🛡 Policy Decision System
+## Live Demo
 
-In addition to the machine learning classifier, I designed a rule-based policy decision system that simulates real-world content moderation workflows.
+https://ai-moderation-tool-jaeman.streamlit.app/
 
-### Example
+## Author
 
-Input:
-"I will kill you"
-
-Output:
-- Violation: YES  
-- Policy: Threat  
-- Action: Remove  
-- Reason: Direct threat detected  
-
-### Purpose
-
-This system demonstrates how moderation decisions are not only based on model predictions, but also on policy logic and enforcement rules.
+Jaeman Park
