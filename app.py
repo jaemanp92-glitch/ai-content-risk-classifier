@@ -3,25 +3,35 @@ import streamlit as st
 def policy_decision(text):
     text_lower = text.lower()
 
-    if "kill you" in text_lower:
-        return "YES", "Threat", "Remove", "Violence threat detected"
+    threat_keywords = ["kill you", "hurt you", "attack you", "beat you", "i will kill"]
+    hate_keywords = ["go back to your country", "immigrant scum", "your race", "foreigners are"]
+    insult_keywords = ["stupid", "idiot", "dumb", "trash", "disgusting"]
 
-    elif "stupid" in text_lower:
-        return "YES", "Harassment", "Review", "Insult detected"
+    if any(word in text_lower for word in threat_keywords):
+        return "YES", "Threat", "Remove", "Direct threat or violent language detected."
+
+    elif any(word in text_lower for word in hate_keywords):
+        return "YES", "Hate Speech", "Remove", "Attack based on nationality, ethnicity, or identity detected."
+
+    elif any(word in text_lower for word in insult_keywords):
+        return "YES", "Harassment / Insult", "Review", "Abusive or insulting language detected."
 
     else:
-        return "NO", "Safe", "Allow", "No violation"
+        return "NO", "Safe", "Allow", "No clear policy violation detected."
 
 
 st.title("AI Content Moderation Tool")
+st.write("A simple Trust & Safety prototype for reviewing user-generated comments.")
 
 user_input = st.text_area("Enter comment")
 
 if st.button("Check"):
-    if user_input:
-        v, p, a, r = policy_decision(user_input)
+    if user_input.strip() == "":
+        st.warning("Please enter a comment.")
+    else:
+        violation, policy, action, reason = policy_decision(user_input)
 
-        st.write(f"Violation: {v}")
-        st.write(f"Policy: {p}")
-        st.write(f"Action: {a}")
-        st.write(f"Reason: {r}")
+        st.write(f"Violation: {violation}")
+        st.write(f"Policy: {policy}")
+        st.write(f"Action: {action}")
+        st.write(f"Reason: {reason}")
