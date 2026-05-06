@@ -27,3 +27,22 @@ Kaggle - Toxic Comment Classification Challenge
 - Try deep learning (LSTM, BERT)
 - Improve precision for toxic class
 - Deploy as web service
+
+## 🛡 Policy Decision System
+
+In addition to the machine learning classifier, I designed a rule-based policy decision system that simulates real-world content moderation workflows.
+
+### Example
+
+Input:
+"I will kill you"
+
+Output:
+- Violation: YES  
+- Policy: Threat  
+- Action: Remove  
+- Reason: Direct threat detected  
+
+### Purpose
+
+This system demonstrates how moderation decisions are not only based on model predictions, but also on policy logic and enforcement rules.
