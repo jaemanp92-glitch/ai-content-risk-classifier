@@ -154,7 +154,15 @@ AI / Trust & Safety / Content Moderation Portfolio Project
 
 GitHub:
 https://github.com/jaemanp92-glitch
+## 🔗 Featured Project
 
+### AI Content Moderation Tool
+
+Live Demo:  
+https://ai-moderation-tool-jaeman.streamlit.app
+
+GitHub Repository:  
+https://github.com/jaemanp92-glitch/ai-content-risk-classifier
 ---
 
 # 📄 License
