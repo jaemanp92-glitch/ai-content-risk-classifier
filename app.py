@@ -31,7 +31,13 @@ if st.button("Check"):
     else:
         violation, policy, action, reason = policy_decision(user_input)
 
-        st.write(f"Violation: {violation}")
-        st.write(f"Policy: {policy}")
-        st.write(f"Action: {action}")
-        st.write(f"Reason: {reason}")
+        if violation == "YES":
+    st.error(f"Violation: {violation}")
+    st.warning(f"Policy: {policy}")
+    st.write(f"Action: {action}")
+    st.write(f"Reason: {reason}")
+
+else:
+    st.success("Content is safe.")
+    st.write(f"Policy: {policy}")
+    st.write(f"Action: {action}")
